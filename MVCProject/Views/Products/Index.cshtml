@@ -1,0 +1,66 @@
+﻿@using MVCProject.Models
+
+@model ProductCategoryModel
+
+
+@Html.Partial("_CarouselPartial")
+
+
+<div class="section-colored home">
+
+    <div class="container">
+
+        <div class="alert alert-info" role="alert">
+            <h4><strong>@Model.ProductCount</strong> products has been listed!</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                        All Computers
+                    </a>
+
+                    @foreach (var category in Model.Categories)
+                    {
+                        <a href="#" class="list-group-item list-group-item-action">
+                            @category.CategoryName
+                        </a>
+                    }
+
+                </div>
+            </div>
+            <div class="col-md-9">
+                @foreach (var product in Model.Products)
+                {
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <a href="/Home/Products">
+                                <img src="/WebSiteExample/img/portfolio_1.png" alt="..." style="width:100%">
+                                <div class="caption">
+                                    <h4><strong>@product.ProductName</strong></h4>
+                                    <h5>@product.Description</h5>
+                                    <h5>@product.Price TL</h5>
+                                    @if (product.IsSouldOut == true)
+                                    {
+                                        <h5>Sold Out!</h5>
+                                    }
+                                    else
+                                    {
+                                        <h5>Still in stock!</h5>
+                                    }
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@Html.Partial("_RecentProjectsPartial")
+
